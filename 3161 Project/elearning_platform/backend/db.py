@@ -1,3 +1,4 @@
+import os
 import mysql.connector
 from mysql.connector import Error
 
@@ -8,10 +9,10 @@ def create_connection():
     """
     try:
         connection = mysql.connector.connect(
-            host='localhost',         # change if needed
-            user='root',      # your MySQL username
-            password='pass1',  # your MySQL password
-            database='elearning_platform'   # your MySQL database name
+            host=os.environ.get('DB_HOST', 'localhost'),
+            user=os.environ.get('DB_USER', 'root'),
+            password=os.environ.get('DB_PASSWORD', 'pass1'),
+            database=os.environ.get('DB_NAME', 'elearning_platform')
         )
         if connection.is_connected():
             print("[+] Connected to MySQL database ✅")

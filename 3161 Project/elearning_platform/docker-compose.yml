@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: elearning_platform
+      MYSQL_ROOT_PASSWORD: pass1
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database/elearning_platform:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/mysql
+
+  backend:
+    build: ./backend
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=pass1
+      - DB_NAME=elearning_platform
+      - JWT_SECRET_KEY=your_jwt_secret_key
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+    command: python api.py
+
+volumes:
+  db_data:
