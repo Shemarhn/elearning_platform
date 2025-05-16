@@ -1,8 +1,14 @@
 # main.py
 
+from flask import Flask
 from user_ops import register_user, login_user
 from course_ops import create_course, get_all_courses
 from enrollment_ops import enroll_student_in_course, assign_lecturer_to_course
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app, origins=["http://localhost:3000"])  # replace with your frontend URL and port
+
 
 # --- Test User Registration ---
 register_user('test_admin', 'Password123!', 'admin')

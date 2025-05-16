@@ -5,12 +5,15 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from sqlalchemy import text
+from flask_cors import CORS
+import pymysql
 
 import pymysql
 from functools import wraps
 pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
+CORS(app)
 
 # === CONFIG ===
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Pass1@localhost/elearning_platform'
@@ -34,6 +37,7 @@ def role_required(role):
             return jsonify({'message': 'Access forbidden'}), 403
         return decorated
     return wrapper
+
 
 # === AUTH ===
 @app.route('/auth/register', methods=['POST'])

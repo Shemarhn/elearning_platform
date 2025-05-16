@@ -1,0 +1,13 @@
+/* Add smooth transitions */
+.MuiCard-root {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .MuiCard-root:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Improve form spacing */
+  .MuiTextField-root {
+    margin-bottom: 16px !important;
+  }

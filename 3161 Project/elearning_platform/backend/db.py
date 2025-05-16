@@ -11,7 +11,7 @@ def create_connection():
         connection = mysql.connector.connect(
             host=os.environ.get('DB_HOST', 'localhost'),
             user=os.environ.get('DB_USER', 'root'),
-            password=os.environ.get('DB_PASSWORD', 'pass1'),
+            password=os.environ.get('DB_PASSWORD', 'reyboss123'),
             database=os.environ.get('DB_NAME', 'elearning_platform')
         )
         if connection.is_connected():
